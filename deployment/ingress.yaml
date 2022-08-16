@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nexthouse-fe
+            name: matching-frontend
             port:
               number: 8080
