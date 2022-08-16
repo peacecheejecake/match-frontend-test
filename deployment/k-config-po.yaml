@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: matching-frontend
-        image: peacecheejecake/matching-frontend:latest
+        image: peacecheejecake/mft:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
