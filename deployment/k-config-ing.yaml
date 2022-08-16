@@ -22,7 +22,7 @@ spec:
             name: matching
             port: 
               number: 8081
-      - path: /m
+      - path: /index
         pathType: Prefix
         backend:
           service:
