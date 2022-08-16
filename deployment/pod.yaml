@@ -19,10 +19,17 @@ spec:
         image: peacecheejecake/matching-frontend:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 3030
+        - containerPort: 8888
         env:
         - name: SERVLET_CONTEXT_PATH
           valueFrom:
             configMapKeyRef:
               name: matching-frontend-config
               key: SERVLET_CONTEXT_PATH
+          volumeMounts:
+          - name: my-volume
+            mountPath: /opt/app/img
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: matching-pvc
