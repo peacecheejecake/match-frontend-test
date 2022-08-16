@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matching-frontend
+  labels:
+    app: matching-frontend
+spec:
+  replicas: 2
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: matching-frontend
+  template:
+    metadata:
+      labels:
+        app: matching-frontend
+    spec:
+      containers:
+      - name: matching-frontend
+        image: peacecheejecake/matching-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: my-volume
+            mountPath: /opt/app/img
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: matching-pvc
+
+        # env:
+        # - name: DB_SERVER
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: matching-config
+        #       key: DB_SERVER
+        # - name: DB_PORT
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: matching-config
+        #       key: DB_PORT
+        # - name: DB_USERNAME
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: matching-config
+        #       key: DB_USERNAME
+        # - name: DB_PASSWORD
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: matching-config
+        #       key: DB_PASSWORD
+        # - name: SERVLET_CONTEXT_PATH
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: matching-config
+        #       key: SERVLET_CONTEXT_PATH
